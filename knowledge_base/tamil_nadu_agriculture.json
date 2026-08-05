@@ -1,0 +1,147 @@
+[
+  {
+    "id": "tnau-ipm-foundation",
+    "title": "Integrated pest management before pesticide use",
+    "content": "Integrated pest management (IPM / ஒருங்கிணைந்த பூச்சி மேலாண்மை) starts with correct identification, regular field scouting, sanitation, resistant or suitable varieties, mechanical and biological controls, and conservation of beneficial insects. Chemical control should be considered only when justified. Never guess a pesticide dose, mixture, or waiting period; use the registered product label and confirm with a qualified agriculture officer or KVK specialist.",
+    "source_name": "TNAU Agritech — Integrated Pest Management",
+    "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_ipm.html",
+    "topics": ["pest", "disease", "ipm", "pesticide"],
+    "crops": ["all"]
+  },
+  {
+    "id": "tnau-crop-protection-diagnosis",
+    "title": "Evidence needed before diagnosing crop damage",
+    "content": "For leaf spots, wilting, insects, or crop damage (இலை புள்ளி, வாடல், பூச்சி), record clear photos of both sides of affected leaves and the whole plant. Note when symptoms started, how much of the field is affected, recent rain or irrigation, and the last fertilizer or pesticide used. Image-based identification is provisional because nutrient, water, pest, and disease symptoms can look similar.",
+    "source_name": "TNAU Agritech — Crop Protection",
+    "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot.html",
+    "topics": ["pest", "disease", "diagnosis", "image"],
+    "crops": ["all"]
+  },
+  {
+    "id": "tnau-soil-test-first",
+    "title": "Use a soil test before planning nutrients",
+    "content": "A nutrient plan should begin with a representative soil test (மண் பரிசோதனை). Use soil pH, electrical conductivity, organic carbon, and available nutrient values together with crop and growth stage. Avoid guessing fertilizer quantities. Prefer crop-stage split applications and apply only with suitable soil moisture; confirm field-specific quantities through the local agriculture department or TNAU guidance.",
+    "source_name": "TNAU Agritech — Soil and water resources",
+    "source_url": "https://agritech.tnau.ac.in/agriculture/agri_soil.html",
+    "topics": ["soil", "fertilizer", "nutrient", "soil test"],
+    "crops": ["all"]
+  },
+  {
+    "id": "tn-agri-soil-health-services",
+    "title": "Tamil Nadu soil health services",
+    "content": "Tamil Nadu's agriculture e-services portal provides access points for Soil Health Card and related farmer services. Farmers should use current official records and their local agriculture office when interpreting a report or deciding a crop-specific fertilizer schedule. Do not treat a general AI answer as a replacement for a laboratory report.",
+    "source_name": "Tamil Nadu Agriculture — Online e-Services",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/esevai/",
+    "topics": ["soil", "soil health card", "service", "fertilizer"],
+    "crops": ["all"]
+  },
+  {
+    "id": "irrigation-root-zone-check",
+    "title": "Base irrigation on root-zone condition",
+    "content": "Irrigation timing (பாசன நேரம்) should consider crop stage, soil texture, recent rain, root-zone moisture, and the irrigation method. Check actual moisture below the surface rather than using a fixed calendar alone. Irrigate during cooler hours where practical, avoid prolonged standing water unless the crop system requires it, and correct drainage or emitter problems before increasing frequency.",
+    "source_name": "TNAU Agritech — Water management",
+    "source_url": "https://agritech.tnau.ac.in/agriculture/agri_irrigationmgt.html",
+    "topics": ["water", "irrigation", "moisture", "drainage"],
+    "crops": ["all"]
+  },
+  {
+    "id": "micro-irrigation-maintenance",
+    "title": "Maintain drip and sprinkler systems",
+    "content": "For drip or sprinkler irrigation (சொட்டு நீர், தெளிப்பு நீர்), inspect filters, pressure, leaks, blocked emitters, and uneven wetting before changing the irrigation interval. Compare several points across the field. A dry patch may be an equipment problem rather than a need to irrigate the entire field for longer.",
+    "source_name": "Tamil Nadu Agriculture — Micro Irrigation service",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/esevai/",
+    "topics": ["water", "irrigation", "drip", "sprinkler"],
+    "crops": ["all"]
+  },
+  {
+    "id": "paddy-water-observation",
+    "title": "Observe paddy field water and drainage",
+    "content": "For paddy / நெல், irrigation decisions depend on establishment method, soil, growth stage, recent rainfall, and local recommendations. Inspect for unexpected standing water, cracks, yellowing, and poor drainage. Do not prescribe one fixed interval for every paddy field. During heavy-rain alerts, keep drainage routes clear and postpone input application when runoff is likely.",
+    "source_name": "TNAU Agritech — Rice",
+    "source_url": "https://agritech.tnau.ac.in/agriculture/agri_cropproduction_cereals_rice.html",
+    "topics": ["water", "irrigation", "paddy", "rice", "drainage"],
+    "crops": ["paddy", "rice", "நெல்"]
+  },
+  {
+    "id": "certified-seed-checklist",
+    "title": "Certified seed and pre-sowing checks",
+    "content": "Before sowing (விதைப்பு), choose certified seed suited to the crop, season, and local conditions. Verify the seed label, lot, validity, germination information, and any treatment instructions. Prepare suitable soil moisture and spacing. Do not add an unlabelled chemical seed treatment or mix products based only on a general recommendation.",
+    "source_name": "Tamil Nadu Agriculture — Seed availability and services",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/esevai/",
+    "topics": ["seed", "sowing", "variety", "germination"],
+    "crops": ["all"]
+  },
+  {
+    "id": "official-weather-warning",
+    "title": "Use official district weather warnings",
+    "content": "For rain, wind, heat, or cyclone questions (மழை, புயல், வானிலை), check the latest IMD Regional Meteorological Centre Chennai warning for the farmer's district. The knowledge base does not contain live forecasts. If heavy rain or strong wind is expected, protect people first, secure loose equipment, keep drainage open, and postpone spraying or fertilizer application when drift or runoff is likely.",
+    "source_name": "IMD Regional Meteorological Centre Chennai",
+    "source_url": "https://mausam.imd.gov.in/chennai/",
+    "topics": ["weather", "rain", "cyclone", "warning"],
+    "crops": ["all"]
+  },
+  {
+    "id": "market-price-comparison",
+    "title": "Compare markets using net return",
+    "content": "Market decisions (சந்தை விலை) should use current official arrivals and minimum, maximum, and modal prices from nearby regulated markets. Compare net return after transport, loading, grading, commission, and likely weight loss. Historical knowledge passages are not live price quotations; confirm the same-day value on the official market service before selling.",
+    "source_name": "Tamil Nadu Agricultural Marketing and Agri Business",
+    "source_url": "https://www.agrimark.tn.gov.in/",
+    "topics": ["market", "price", "selling", "regulated market"],
+    "crops": ["all"]
+  },
+  {
+    "id": "scheme-eligibility-current",
+    "title": "Verify current scheme eligibility",
+    "content": "Agriculture scheme and subsidy rules (மானியம், திட்டம்) can change by year, district, crop, farmer category, and available allocation. Collect land or tenancy status, crop, acreage, requested component, identity and bank documents, then verify current eligibility on the Tamil Nadu Agriculture portal or with the block agriculture office. Never promise approval from an older scheme description.",
+    "source_name": "Tamil Nadu Department of Agriculture — Agrisnet",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/home/index/",
+    "topics": ["scheme", "subsidy", "eligibility", "application"],
+    "crops": ["all"]
+  },
+  {
+    "id": "crop-insurance-verification",
+    "title": "Confirm crop-insurance notifications and deadlines",
+    "content": "For crop insurance (பயிர் காப்பீடு), verify the currently notified crop, season, location, enrolment channel, premium, and cut-off date through the official Tamil Nadu agriculture service or the responsible local office. Do not infer eligibility or a deadline from a previous season. Keep acknowledgement and supporting records after enrolment.",
+    "source_name": "Tamil Nadu Agriculture — Online e-Services",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/esevai/",
+    "topics": ["scheme", "insurance", "deadline", "eligibility"],
+    "crops": ["all"]
+  },
+  {
+    "id": "post-harvest-quality",
+    "title": "Protect quality after harvest",
+    "content": "After harvest (அறுவடை), reduce avoidable loss by keeping produce clean, shaded where appropriate, protected from rain and soil contact, and separated by visible quality. Use crop-appropriate drying, containers, and storage; do not store visibly mouldy or wet produce with sound lots. Confirm commodity-specific moisture and storage requirements with an official crop guide.",
+    "source_name": "TNAU Agritech — Post-harvest technology",
+    "source_url": "https://agritech.tnau.ac.in/postharvest/postharvest.html",
+    "topics": ["harvest", "storage", "drying", "quality"],
+    "crops": ["all"]
+  },
+  {
+    "id": "pesticide-human-exposure",
+    "title": "Human pesticide exposure is a medical emergency",
+    "content": "If a person becomes dizzy, vomits, faints, has breathing difficulty, eye exposure, or suspected swallowing after pesticide or chemical use, stop the hazardous activity and move the person to safety. Do not make them vomit unless a medical professional or the product label specifically directs it. Take the product label or container information and call India's emergency service 112 or obtain immediate local medical help.",
+    "source_name": "India Emergency Response Support System",
+    "source_url": "https://112.gov.in/",
+    "topics": ["pesticide", "poisoning", "exposure", "emergency"],
+    "crops": ["all"]
+  },
+  {
+    "id": "safe-pesticide-application-boundary",
+    "title": "Pesticide advice must remain label-led",
+    "content": "A chatbot should not invent pesticide doses, tank mixtures, repeat intervals, harvest waiting periods, or registrations. These depend on the exact crop, pest, formulation, label, and current approval. Confirm identification first, prefer IPM options, and use only a product registered for the crop and target problem according to its label and qualified local advice.",
+    "source_name": "TNAU Agritech — Crop Protection",
+    "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot.html",
+    "topics": ["pest", "pesticide", "dose", "safety"],
+    "crops": ["all"]
+  },
+  {
+    "id": "farmer-officer-contact",
+    "title": "Escalate uncertain field problems to local expertise",
+    "content": "Seek a field inspection when damage spreads quickly, a diagnosis remains uncertain, livestock are severely ill, repeated irrigation changes do not help, or a recommendation requires an exact chemical or nutrient quantity. Tamil Nadu's Uzhavar services include farmer-officer contact and crop guidance. Bring photos, dates, input labels, soil or water reports, and the affected-area estimate.",
+    "source_name": "Tamil Nadu Agriculture — Uzhavar services",
+    "source_url": "https://www.tnagrisnet.tn.gov.in/people_app/dashboard/main/en",
+    "topics": ["officer", "field inspection", "escalation", "diagnosis"],
+    "crops": ["all"]
+  }
+]
+
