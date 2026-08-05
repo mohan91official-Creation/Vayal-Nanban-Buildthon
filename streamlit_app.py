@@ -15,10 +15,11 @@ from farmer_assistant import (
     LangSmithSettings,
     build_field_note,
     build_triage_card,
-    generate_ai_reply,
+    generate_grounded_reply,
     offline_reply,
     transcribe_audio,
 )
+from rag_engine import build_rag_engine
 from upload_safety import prepare_image_upload
 
 
@@ -523,9 +524,13 @@ COPY = {
         "irrigation": "பாசன முறை",
         "context": "உங்கள் வயல் விவரம்",
         "new_chat": "புதிய உரையாடல்",
-        "ai_on": "AI இணைக்கப்பட்டுள்ளது",
+        "ai_on": "RAG + AI இணைக்கப்பட்டுள்ளது",
+        "rag_ready": "அதிகாரப்பூர்வ RAG தயார்",
+        "rag_caption": "FAISS தேடல் மூலம் தொடர்புடைய அதிகாரப்பூர்வ தகவல் மீட்டெடுக்கப்படும்.",
+        "rag_unavailable": "RAG தேடல் கிடைக்கவில்லை; பாதுகாப்பான AI வழிகாட்டலை மட்டும் பயன்படுத்துகிறேன்.",
+        "rag_sources": "ஆதாரத் துணுக்குகள் மீட்டெடுக்கப்பட்டன",
         "offline": "அடிப்படை வழிகாட்டல்",
-        "online_caption": "விரிவான பதில் மற்றும் பட ஆய்வு கிடைக்கும்.",
+        "online_caption": "ஆதாரத்துடன் விரிவான பதில் மற்றும் பட ஆய்வு கிடைக்கும்.",
         "offline_caption": "API key இல்லாமலும் பொதுவான வழிகாட்டல் கிடைக்கும்.",
         "welcome": "வணக்கம்! இன்று உங்கள் வயலில் என்ன உதவி வேண்டும்?",
         "welcome_caption": "கேள்வியை தட்டச்சு செய்யுங்கள், குரலில் பதிவு செய்யுங்கள், அல்லது பயிர் படத்தை இணைக்குங்கள்.",
@@ -550,7 +555,7 @@ COPY = {
         "feedback_saved": "நன்றி — உங்கள் கருத்து இந்த உரையாடலில் சேமிக்கப்பட்டது.",
         "features": (
             (":material/health_and_safety:", "பாதிப்பு முன்னுரிமை", "கேள்வி எவ்வளவு அவசரம் என்பதை தெளிவாகக் காட்டும்."),
-            (":material/checklist:", "செயல் அட்டை", "இன்று, அடுத்து, எப்போது உதவி பெற வேண்டும் என பிரிக்கும்."),
+            (":material/library_books:", "ஆதார RAG", "அதிகாரப்பூர்வ தகவலைத் தேடி ஆதார இணைப்புடன் பதிலளிக்கும்."),
             (":material/share:", "பகிரக்கூடிய குறிப்பு", "வேளாண்மை அலுவலரிடம் காட்ட களக் குறிப்பை சேமிக்கலாம்."),
         ),
         "suggestions": {
@@ -570,9 +575,13 @@ COPY = {
         "irrigation": "Irrigation method",
         "context": "Your farm context",
         "new_chat": "New conversation",
-        "ai_on": "AI connected",
+        "ai_on": "RAG + AI connected",
+        "rag_ready": "Official-source RAG ready",
+        "rag_caption": "FAISS retrieves relevant passages from the verified agriculture knowledge base.",
+        "rag_unavailable": "RAG retrieval is unavailable, so I am using the safety-focused AI guidance only.",
+        "rag_sources": "source passages retrieved",
         "offline": "Essential guidance",
-        "online_caption": "Detailed answers and image guidance are available.",
+        "online_caption": "Grounded answers, citations, and image guidance are available.",
         "offline_caption": "General guidance works even without an API key.",
         "welcome": "Vanakkam! What can I help with on your farm today?",
         "welcome_caption": "Type a question, record your voice, or attach a crop photo.",
@@ -597,7 +606,7 @@ COPY = {
         "feedback_saved": "Thank you — your rating is saved in this conversation.",
         "features": (
             (":material/health_and_safety:", "Smart triage", "Shows how urgently the question needs attention."),
-            (":material/checklist:", "Action card", "Separates what to do today, watch next, and when to get help."),
+            (":material/library_books:", "Grounded RAG", "Retrieves verified passages and links every answer to its sources."),
             (":material/share:", "Shareable note", "Save a clear field note to show an agriculture officer."),
         ),
         "suggestions": {
@@ -620,6 +629,13 @@ def get_secret(name: str, default: str = "") -> str:
 def get_bool_secret(name: str, default: bool = False) -> bool:
     value = get_secret(name, str(default)).strip().lower()
     return value in {"1", "true", "yes", "on"}
+
+
+@st.cache_resource(show_spinner=False)
+def get_cached_rag_engine(_api_key: str, embedding_model: str):
+    """Build the FAISS index once per Streamlit process."""
+
+    return build_rag_engine(api_key=_api_key, embedding_model=embedding_model)
 
 
 def reset_conversation() -> None:
@@ -682,6 +698,7 @@ st.session_state.setdefault("irrigation", "Canal / கால்வாய்")
 
 api_key = get_secret("OPENAI_API_KEY")
 model = get_secret("OPENAI_MODEL", "gpt-4.1-mini")
+embedding_model = get_secret("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
 langsmith_settings = LangSmithSettings(
     enabled=get_bool_secret("LANGSMITH_TRACING"),
     api_key=get_secret("LANGSMITH_API_KEY"),
@@ -708,6 +725,8 @@ with st.sidebar:
     irrigation = st.selectbox(t["irrigation"], IRRIGATION_TYPES, key="irrigation")
 
     if api_key:
+        st.badge(t["rag_ready"], icon=":material/library_books:", color="green")
+        st.caption(t["rag_caption"])
         st.badge(t["ai_on"], icon=":material/check_circle:", color="green")
         st.caption(t["online_caption"])
     else:
@@ -738,6 +757,12 @@ with st.sidebar:
             "TN Agriculture",
             "https://www.tnagrisnet.tn.gov.in/",
             icon=":material/account_balance:",
+            width="stretch",
+        )
+        st.link_button(
+            "TN Agri Market",
+            "https://www.agrimark.tn.gov.in/",
+            icon=":material/storefront:",
             width="stretch",
         )
 
@@ -810,6 +835,12 @@ for message_index, message in enumerate(st.session_state.messages):
                 LOGGER.exception("A stored chat image could not be rendered")
                 st.warning(t["bad_image"])
         if role == "assistant" and message.get("triage"):
+            if message.get("rag_sources"):
+                st.badge(
+                    f"{len(message['rag_sources'])} {t['rag_sources']}",
+                    icon=":material/library_books:",
+                    color="green",
+                )
             render_action_card(
                 message["triage"],
                 message.get("field_note", message["content"]),
@@ -875,20 +906,31 @@ if (pending_prompt or submission) and prompt_text:
         if audio:
             st.audio(audio)
 
+    grounded_reply = None
     with st.chat_message("assistant", avatar="assets/vayal-nanban-mark.png"):
         try:
             with st.skeleton(height=110):
                 if api_key:
-                    answer = generate_ai_reply(
+                    rag_engine = None
+                    try:
+                        rag_engine = get_cached_rag_engine(api_key, embedding_model)
+                    except Exception:
+                        LOGGER.exception("RAG index creation failed; continuing without retrieval")
+                        st.caption(t["rag_unavailable"])
+
+                    grounded_reply = generate_grounded_reply(
                         api_key=api_key,
                         model=model,
                         history=st.session_state.messages,
                         context=context,
                         image=images[0] if images else None,
                         langsmith=langsmith_settings,
+                        rag_engine=rag_engine,
                     )
+                    answer = grounded_reply.text
                 else:
                     answer = offline_reply(prompt_text, context)
+                    grounded_reply = None
         except Exception:
             LOGGER.exception("AI answer generation failed; serving offline guidance")
             st.caption(t["error"])
@@ -903,8 +945,12 @@ if (pending_prompt or submission) and prompt_text:
             "content": answer,
             "triage": triage,
             "field_note": field_note,
+            "rag_sources": [source.as_dict() for source in grounded_reply.sources]
+            if grounded_reply
+            else [],
         }
     )
     st.rerun()
 
 st.caption(t["footer"], text_alignment="center")
+
